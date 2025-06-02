@@ -8,6 +8,12 @@ A full-stack MERN (MongoDB, Express, React, Node.js) application for tracking, r
 
 ---
 
+![Wireframe](./wireFrame.png)
+
+---
+
+![Component Hierarchy](./prject3.png)
+
 ## �� Features
 
 ### �� Public Users
