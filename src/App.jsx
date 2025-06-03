@@ -5,11 +5,11 @@ import Register from './pages/Register'
 import SignIn from './pages/SignIn'
 import Home from './pages/Home'
 import { CheckSession } from './services/Auth'
+import Profile from './Profile'
 import './App.css'
 
 const App = () => {
   const [user, setUser] = useState(null)
-
 
   useEffect(() => {
     const token = localStorage.getItem('token')
@@ -19,14 +19,11 @@ const App = () => {
     }
   }, [])
 
-
   const handleLogOut = () => {
     //Reset all auth related state and clear localStorage
     setUser(null)
     localStorage.clear()
   }
-
-
 
   const checkSession = async () => {
     try {
@@ -37,7 +34,6 @@ const App = () => {
       setUser(null)
     }
   }
-
 
   return (
     <>
