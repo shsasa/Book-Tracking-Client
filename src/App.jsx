@@ -9,7 +9,7 @@ import Admin from './pages/Admin'
 import BooksPage from './pages/BooksPage'
 import BookDetail from './pages/BookDetail'
 import { CheckSession } from './services/Auth'
-import Profile from './Profile'
+// import Profile from './Profile'
 import './App.css'
 
 const App = () => {
@@ -47,8 +47,8 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/signin" element={<SignIn setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
-              <Route path="/books" element={<BooksPage />} />
-  <Route path="/book/:id" element={<BookDetail />} />
+          <Route path="/books" element={<BooksPage />} />
+          <Route path="/book/:id" element={<BookDetail />} />
           <Route path="/admin" element={<Admin user={user} />} />
         </Routes>
 
