@@ -4,6 +4,7 @@ import Nav from './components/Nav'
 import Register from './pages/Register'
 import SignIn from './pages/SignIn'
 import Home from './pages/Home'
+import Admin from './pages/Admin'
 import { CheckSession } from './services/Auth'
 import './App.css'
 
@@ -13,6 +14,7 @@ const App = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('token')
+
     // Check if token exists before requesting to validate the token
     if (token) {
       checkSession()
@@ -31,6 +33,7 @@ const App = () => {
   const checkSession = async () => {
     try {
       const user = await CheckSession()
+      console.log('User session:', user)
       setUser(user)
     } catch (error) {
       console.error('Session check failed:', error)
@@ -47,6 +50,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/signin" element={<SignIn setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/admin" element={<Admin user={user} />} />
         </Routes>
       </main>
     </>
