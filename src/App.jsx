@@ -9,6 +9,7 @@ import Admin from './pages/Admin'
 import BooksPage from './pages/BooksPage'
 import BookDetail from './pages/BookDetail'
 import { CheckSession } from './services/Auth'
+import Profile from './Profile'
 import './App.css'
 
 const App = () => {
