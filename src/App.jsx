@@ -14,15 +14,9 @@ import './App.css'
 
 const App = () => {
   //profile
-  const Profile = ({ user }) => {
-    return (
-      <div>
-        <h1>{user.name}'s Profile</h1>
-        <p>First Name:{user.firstName}</p>
-        <p>Last Name: {user.lastName}</p>
-        <p>Email: {user.email}</p>
-      </div>
-    )
+  const profile = {
+    name: '',
+    email: ''
   }
 
   const [user, setUser] = useState(null)
@@ -55,6 +49,11 @@ const App = () => {
     <>
       <Nav user={user} handleLogOut={handleLogOut} />
       <main>
+        //profile
+        <div>
+          <h1>${user.name}'s Profile</h1>
+          <Profile user={user} />
+        </div>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signin" element={<SignIn setUser={setUser} />} />
