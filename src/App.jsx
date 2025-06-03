@@ -9,10 +9,22 @@ import Admin from './pages/Admin'
 import BooksPage from './pages/BooksPage'
 import BookDetail from './pages/BookDetail'
 import { CheckSession } from './services/Auth'
-// import Profile from './Profile'
+import Profile from './Profile'
 import './App.css'
 
 const App = () => {
+  //profile
+  const Profile = ({ user }) => {
+    return (
+      <div>
+        <h1>{user.name}'s Profile</h1>
+        <p>First Name:{user.firstName}</p>
+        <p>Last Name: {user.lastName}</p>
+        <p>Email: {user.email}</p>
+      </div>
+    )
+  }
+
   const [user, setUser] = useState(null)
 
   useEffect(() => {
@@ -51,8 +63,6 @@ const App = () => {
           <Route path="/book/:id" element={<BookDetail />} />
           <Route path="/admin" element={<Admin user={user} />} />
         </Routes>
-
-
       </main>
     </>
   )
