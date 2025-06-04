@@ -1,0 +1,41 @@
+/* ...existing code... */
+
+.home-search-form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.home-search-input {
+  padding: 9px 14px;
+  border: 1px solid #e2cdb0;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 65%;
+  max-width: 220px;
+  background: #fff;
+  color: #3a2c1a;
+  transition: border 0.2s;
+}
+
+.home-search-input:focus {
+  border: 1.5px solid #a67c52;
+  outline: none;
+}
+
+.home-search-btn {
+  background-color: #a67c52;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 9px 18px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.home-search-btn:hover {
+  background-color: #7c5c36;
+}

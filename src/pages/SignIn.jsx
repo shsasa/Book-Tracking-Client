@@ -1,9 +1,13 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { SignInUser } from '../services/Auth'
 import { useNavigate } from 'react-router-dom'
+import { AuthContext } from '../context/AuthContext'
+import '../styles/SignIn.css'
 
-const SignIn = ({ setUser }) => {
+
+const SignIn = () => {
   const initialState = { email: '', password: '' }
+  const { login } = useContext(AuthContext)
 
   const [formValues, setFormValues] = useState(initialState)
   let navigate = useNavigate()
@@ -17,7 +21,7 @@ const SignIn = ({ setUser }) => {
 
     const payload = await SignInUser(formValues)
     setFormValues(initialState)
-    setUser(payload)
+    login(payload)
     navigate('/')
 
   }

@@ -1,45 +1,46 @@
 import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import { AuthContext } from '../context/AuthContext'
+import '../styles/Nav.css'
 
-const Nav = ({ user, handleLogOut }) => {
-  let userOptions
-
-  if (user) {
-    userOptions = (
-      <nav>
-        <h3>Welcome {user.name}!</h3>
-
-        <Link onClick={handleLogOut} to="/">
-          Sign Out
-        </Link>
-      </nav>
-    )
-  }
-
-  const adminOptions = (
-    <nav>
-      <Link to="/">Home</Link>
-
-      <Link to="/admin">Admin</Link>
-    </nav>
-  )
-  if (user && user.role === 'admin') {
-    return adminOptions
-  }
-
-  const publicOptions = (
-    <nav>
-      <Link to="/">Home</Link>
-      <Link to="/register">Register</Link>
-      <Link to="/signin">Sign In</Link>
-
-
-    </nav>
-  )
+const Nav = () => {
+  const { user, logout } = useContext(AuthContext)
 
   return (
-    <header>
+    <header className="main-header">
+      <nav className="navbar">
+        <Link className="logo" to="/">BookTracker</Link>
+        <div className="nav-links-container">
+          <Link to="/books">Books</Link>
 
-      {user ? userOptions : publicOptions}
+        </div>
+        <ul className="nav-links">
+
+          {user ? (
+            <>
+              <li className="welcome">Welcome, {user.name}!</li>
+              {user.role === 'admin' && (
+                <li>
+                  <Link to="/admin">Admin</Link>
+                </li>
+              )}
+              <li>
+                <Link onClick={logout} to="/">Sign Out</Link>
+
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link to="/register">Register</Link>
+              </li>
+              <li>
+                <Link to="/signin">Sign In</Link>
+              </li>
+            </>
+          )}
+        </ul>
+      </nav>
     </header>
   )
 }

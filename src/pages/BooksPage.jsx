@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import BookCard from '../components/BookCard';
+import { getBooks } from '../services/Book';
+import '../styles/BooksPage.css'
+import { Link } from 'react-router-dom';
 
 const BooksPage = () => {
   const [books, setBooks] = useState([]);
@@ -8,8 +10,8 @@ const BooksPage = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const res = await axios.get('http://localhost:3000/book/'); // You can change search query
-        setBooks(res.data);
+        const res = await getBooks();
+        setBooks(res);
       } catch (error) {
         console.error('Error fetching books:', error);
       }
@@ -19,14 +21,20 @@ const BooksPage = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+    <div className="books-grid">
       {books.map((book) => (
-        <BookCard
-          key={book.id}
-          title={book.title}
-          author={book?.authors || 'Unkown'}
-          year={book?.copyright_year || 'Unknown'}
-        />
+        <Link to={{
+          pathname: "/book/" + book.apiId,
+
+        }} > <BookCard
+            key={book.apiId || book.title}
+            title={book.title}
+            poster_path={book.poster_path}
+            authors={book.authors}
+            year={book.year}
+            blocked={book.blocked}
+          />
+        </Link>
       ))}
     </div>
   );
