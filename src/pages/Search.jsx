@@ -16,7 +16,6 @@ const Search = () => {
 
       try {
         const res = await searchBooks(search);
-        // Gutendex returns { results: [...] }
         setBooks(res || []);
       } catch (error) {
         console.error('Error fetching books:', error);
