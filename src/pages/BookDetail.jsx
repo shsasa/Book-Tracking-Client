@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { getBookById } from '../services/Book'
 import '../styles/BookDetail.css'
+import RatingComponent from '../components/RatingComponent';
 
 const BookDetail = () => {
   const { id } = useParams()
@@ -66,9 +67,11 @@ const BookDetail = () => {
             </a>
           )}
         </div>
+        <RatingComponent bookId={book._id} />
       </div>
     </div>
   )
 }
 
 export default BookDetail
+
