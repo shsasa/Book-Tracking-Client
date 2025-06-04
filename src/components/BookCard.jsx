@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/BookCard.css';
 
-const BookCard = ({ title, poster_path, authors = [], year, blocked }) => {
+const BookCard = ({ title, poster_path, authors = [], year, blocked, onAddToFavorite, onAddToRead, onAddToCustomList }) => {
   return (
     <div className={`book-card${blocked?.blocked ? ' blocked' : ''}`}>
       {poster_path && (
@@ -30,6 +30,11 @@ const BookCard = ({ title, poster_path, authors = [], year, blocked }) => {
             {blocked.reason && <span className="block-reason">: {blocked.reason}</span>}
           </div>
         )}
+        <div className="book-actions">
+          <button onClick={() => onAddToFavorite(title)}>Add to Favorite</button>
+          <button onClick={() => onAddToRead(title)}>Add to Read</button>
+          <button onClick={() => onAddToCustomList(title)}>Add to Custom List</button>
+        </div>
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ import Home from './pages/Home'
 import Admin from './pages/Admin'
 import Search from './pages/Search'
 
-
+import RatingComponent from './components/RatingComponent';
 import BooksPage from './pages/BooksPage'
 import BookDetail from './pages/BookDetail'
 import { CheckSession } from './services/Auth'
