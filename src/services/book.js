@@ -11,4 +11,13 @@ export const getBookById = async (id) => {
   return res.data
 }
 
+//search books by title
+export const searchBooks = async (query) => {
+  console.log(query)
+
+  const res = await Client.get(`/book/search/${query}`, {
+
+  })
+  return res.data
+}
 

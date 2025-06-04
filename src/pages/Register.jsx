@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { RegisterUser } from '../services/Auth'
 import { useNavigate } from 'react-router-dom'
+import '../styles/Register.css'
 
 
 
@@ -23,16 +24,16 @@ const Register = () => {
     setFormValues({ ...formValues, [e.target.id]: e.target.value })
   }
 
-const handleSubmit = async (e) => {
-  e.preventDefault()
-  await RegisterUser({
-    name: formValues.name,
-    email: formValues.email,
-    password: formValues.password
-  })
-  setFormValues(initialState)
-  navigate('/signin')
-}
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    await RegisterUser({
+      name: formValues.name,
+      email: formValues.email,
+      password: formValues.password
+    })
+    setFormValues(initialState)
+    navigate('/signin')
+  }
 
 
   return (
