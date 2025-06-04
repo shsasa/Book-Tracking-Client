@@ -20,19 +20,35 @@ const BooksPage = () => {
     fetchBooks();
   }, []);
 
+    const handleAddToFavorite = (bookTitle) => {
+    console.log(`Added to Favorite: ${bookTitle}`);
+ 
+  };
+
+  const handleAddToRead = (bookTitle) => {
+    console.log(`Added to Read: ${bookTitle}`);
+ 
+  };
+
+  const handleAddToCustomList = (bookTitle) => {
+    console.log(`Added to Custom List: ${bookTitle}`);
+  
+  };
+
   return (
     <div className="books-grid">
       {books.map((book) => (
         <Link to={{
-          pathname: "/book/" + book.apiId,
-
-        }} > <BookCard
-            key={book.apiId || book.title}
+          pathname: "/book/" + book.apiId }}   key={book.apiId || book.title}>
+             <BookCard
             title={book.title}
             poster_path={book.poster_path}
             authors={book.authors}
             year={book.year}
             blocked={book.blocked}
+            onAddToFavorite={handleAddToFavorite}
+            onAddToRead={handleAddToRead}
+            onAddToCustomList={handleAddToCustomList}
           />
         </Link>
       ))}
@@ -41,3 +57,4 @@ const BooksPage = () => {
 };
 
 export default BooksPage;
+
