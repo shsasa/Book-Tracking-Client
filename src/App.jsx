@@ -1,19 +1,24 @@
-import { useState, useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import { Route, Routes } from 'react-router'
 import Nav from './components/Nav'
 import Register from './pages/Register'
 import SignIn from './pages/SignIn'
 import Home from './pages/Home'
 import Admin from './pages/Admin'
+import Search from './pages/Search'
+
 
 import BooksPage from './pages/BooksPage'
 import BookDetail from './pages/BookDetail'
 import { CheckSession } from './services/Auth'
+import { AuthContext } from './context/AuthContext'
+
 // import Profile from './Profile'
 import './App.css'
 
 const App = () => {
-  const [user, setUser] = useState(null)
+
+  const { user, login, logout } = useContext(AuthContext)
 
   useEffect(() => {
     const token = localStorage.getItem('token')
@@ -24,7 +29,8 @@ const App = () => {
   }, [])
 
   const handleLogOut = () => {
-    setUser(null)
+    logout()
+
     localStorage.clear()
   }
 
@@ -32,10 +38,11 @@ const App = () => {
     try {
       const user = await CheckSession()
       console.log('User session:', user)
-      setUser(user)
+      login(user)
+
     } catch (error) {
       console.error('Session check failed:', error)
-      setUser(null)
+      logout()
     }
   }
 
@@ -45,10 +52,11 @@ const App = () => {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/signin" element={<SignIn setUser={setUser} />} />
+          <Route path="/signin" element={<SignIn />} />
           <Route path="/register" element={<Register />} />
           <Route path="/books" element={<BooksPage />} />
           <Route path="/book/:id" element={<BookDetail />} />
+          <Route path="/search/:search" element={<Search />} />
           <Route path="/admin" element={<Admin user={user} />} />
         </Routes>
 

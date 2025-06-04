@@ -1,0 +1,67 @@
+.book-card {
+  display: flex;
+  align-items: flex-start;
+  background: #fff8ee;
+  border: 1px solid #f1e3c6;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(58, 44, 26, 0.08);
+  padding: 20px;
+  margin: 16px 0;
+  gap: 18px;
+  max-width: 420px;
+  transition: box-shadow 0.2s, border 0.2s;
+}
+
+.book-card:hover {
+  box-shadow: 0 6px 24px rgba(58, 44, 26, 0.13);
+  border-color: #e2cdb0;
+}
+
+.book-card.blocked {
+  opacity: 0.7;
+  border: 1.5px solid #e57373;
+  background: #fbeaea;
+}
+
+.book-poster {
+  width: 80px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #e2cdb0;
+  background: #f1e3c6;
+  margin-right: 12px;
+}
+
+.book-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.book-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #a67c52;
+  margin: 0 0 4px 0;
+}
+
+.book-authors,
+.book-year {
+  color: #7c5c36;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.book-blocked {
+  color: #c0392b;
+  font-weight: 600;
+  margin-top: 8px;
+  font-size: 0.98rem;
+}
+
+.block-reason {
+  font-weight: 400;
+  color: #a94442;
+}
