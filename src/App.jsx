@@ -7,17 +7,16 @@ import Home from './pages/Home'
 import Admin from './pages/Admin'
 import Search from './pages/Search'
 
-
 import BooksPage from './pages/BooksPage'
 import BookDetail from './pages/BookDetail'
 import { CheckSession } from './services/Auth'
 import { AuthContext } from './context/AuthContext'
+import FavoriteButton from './components/FavoriteButton'
 
 // import Profile from './Profile'
 import './App.css'
 
 const App = () => {
-
   const { user, login, logout } = useContext(AuthContext)
 
   useEffect(() => {
@@ -39,7 +38,6 @@ const App = () => {
       const user = await CheckSession()
       console.log('User session:', user)
       login(user)
-
     } catch (error) {
       console.error('Session check failed:', error)
       logout()
@@ -49,6 +47,7 @@ const App = () => {
   return (
     <>
       <Nav user={user} handleLogOut={handleLogOut} />
+      <Favorite /> {Favorited}
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -59,8 +58,6 @@ const App = () => {
           <Route path="/search/:search" element={<Search />} />
           <Route path="/admin" element={<Admin user={user} />} />
         </Routes>
-
-
       </main>
     </>
   )
