@@ -1,6 +1,20 @@
 import React, { useContext } from 'react';
 import '../styles/BookCard.css';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../context/AuthContext';
+
+const BookCard = ({ title, poster_path, authors = [], year, blocked }) => {
+  const handleAddToFavorite = () => {
+    toast.success(`Added "${title}" to favorites! ❤️`);
+  };
+
+  const handleAddToRead = () => {
+    toast.success(`Marked "${title}" as read! 📖`);
+  };
+
+  const handleAddToCustomList = () => {
+    toast.success(`Added "${title}" to your custom list! 📚`);
+  };
 
 const BookCard = ({
   title,
@@ -16,24 +30,12 @@ const BookCard = ({
 
   return (
     <div className={`book-card${blocked?.blocked ? ' blocked' : ''}`}>
-      {poster_path && (
-        <img
-          src={poster_path}
-          alt={title}
-          className="book-poster"
-        />
-      )}
+      {poster_path && <img src={poster_path} alt={title} className="book-poster" />}
       <div className="book-info">
         <h2 className="book-title">{title}</h2>
         <p className="book-authors">
           <span>Author{authors.length > 1 ? 's' : ''}: </span>
-          {authors.length > 0
-            ? authors.map((a) =>
-              typeof a === 'string'
-                ? a
-                : a.name || 'Unknown'
-            ).join(', ')
-            : 'Unknown'}
+          {authors.length > 0 ? authors.map((a) => (typeof a === 'string' ? a : a.name || 'Unknown')).join(', ') : 'Unknown'}
         </p>
         <p className="book-year">Year: {year || 'N/A'}</p>
 
