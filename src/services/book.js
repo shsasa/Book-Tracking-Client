@@ -21,3 +21,12 @@ export const updateRating = async (bookId, ratingData) => {
   const res = await Client.put(`/book/${bookId}/rating`, ratingData);
   return res.data;
 };
+
+export const getBookUrl = async (epubLink) => {
+  const res = await fetch(`http://localhost:3000/book/url?url=${encodeURIComponent(epubLink)}`);
+  const data = await res.json();
+
+  if (!data.url) throw new Error('No EPUB URL returned');
+
+  return `http://localhost:3000${data.url}`;
+};

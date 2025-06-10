@@ -1,9 +1,11 @@
 import UserCard from '../components/UserCard';
 import { useState, useEffect } from 'react';
 import { getAllUsers } from '../services/User';
+
 const Admin = () => {
 
   const [users, setUsers] = useState([]);
+
 
 
 
