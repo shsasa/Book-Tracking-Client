@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const RatingComponent = () => {
-  const [rating, setRating] = useState(0);       // user-selected rating
+  const [rating, setRating] = useState(3);       // user-selected rating
   const [submitted, setSubmitted] = useState(false); // if submitted
 
   const handleClick = (value) => {
