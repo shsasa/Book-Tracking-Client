@@ -13,11 +13,15 @@ import BookDetail from './pages/BookDetail'
 import { CheckSession } from './services/Auth'
 import Profile from './Profile'
 import './App.css'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+<ToastContainer position="top-right" autoClose={3000} />
 
 
 import { AuthContext } from './context/AuthContext'
 
-// import Profile from './Profile'
+import Profile from './Profile'
 import './App.css'
 
 const App = () => {
