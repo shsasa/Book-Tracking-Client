@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import '../styles/BookCard.css';
+import { AuthContext } from '../context/AuthContext';
 
-const BookCard = ({ title, poster_path, authors = [], year, blocked, onAddToFavorite, onAddToRead, onAddToCustomList }) => {
+const BookCard = ({
+  title,
+  poster_path,
+  authors = [],
+  year,
+  blocked,
+  onAddToFavorite,
+  onAddToRead,
+  onAddToCustomList
+}) => {
+  const { user } = useContext(AuthContext);
+
   return (
     <div className={`book-card${blocked?.blocked ? ' blocked' : ''}`}>
       {poster_path && (
@@ -24,17 +36,22 @@ const BookCard = ({ title, poster_path, authors = [], year, blocked, onAddToFavo
             : 'Unknown'}
         </p>
         <p className="book-year">Year: {year || 'N/A'}</p>
+
         {blocked?.blocked && (
           <div className="book-blocked">
             <span>Blocked</span>
             {blocked.reason && <span className="block-reason">: {blocked.reason}</span>}
           </div>
         )}
-        <div className="book-actions">
-          <button onClick={() => onAddToFavorite(title)}>Add to Favorite</button>
-          <button onClick={() => onAddToRead(title)}>Add to Read</button>
-          <button onClick={() => onAddToCustomList(title)}>Add to Custom List</button>
-        </div>
+
+
+        {user && (
+          <div className="book-actions">
+            <button onClick={() => onAddToFavorite(title)}>Add to Favorite</button>
+            <button onClick={() => onAddToRead(title)}>Add to Read</button>
+            <button onClick={() => onAddToCustomList(title)}>Add to Custom List</button>
+          </div>
+        )}
       </div>
     </div>
   );
