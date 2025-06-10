@@ -2,7 +2,7 @@ import Client from './api'
 
 export const RegisterUser = async (data) => {
 
-  const res = await Client.post('/auth/register', data)
+  const res = await Client.post('/auth/register', data , { withCredentials: true })
   return res.data
 
 }
