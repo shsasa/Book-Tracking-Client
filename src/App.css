@@ -18,7 +18,6 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-
 a {
   color: #a67c52;
   /* Warm brown for links */
@@ -88,4 +87,15 @@ h6 {
 ::-webkit-scrollbar-thumb {
   background: #e2cdb0;
   border-radius: 4px;
+}
+
+.favorite {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgb(201, 31, 164);
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
 }

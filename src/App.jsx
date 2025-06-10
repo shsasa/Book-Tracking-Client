@@ -11,6 +11,9 @@ import Search from './pages/Search'
 import BooksPage from './pages/BooksPage'
 import BookDetail from './pages/BookDetail'
 import { CheckSession } from './services/Auth'
+import { AuthContext } from './context/AuthContext'
+import FavoriteButton from './components/FavoriteButton'
+
 
 import './App.css'
 import { ToastContainer } from 'react-toastify';
@@ -24,7 +27,6 @@ import Profile from './Profile'
 import './App.css'
 
 const App = () => {
-
   const { user, login, logout } = useContext(AuthContext)
 
   useEffect(() => {
@@ -46,7 +48,6 @@ const App = () => {
       const user = await CheckSession()
       console.log('User session:', user)
       login(user)
-
     } catch (error) {
       console.error('Session check failed:', error)
       logout()
@@ -56,6 +57,7 @@ const App = () => {
   return (
     <>
       <Nav user={user} handleLogOut={handleLogOut} />
+      <Favorite /> {Favorited}
       <main>
         //profile
         <div>
