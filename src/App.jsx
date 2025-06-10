@@ -11,7 +11,7 @@ import RatingComponent from './components/RatingComponent';
 import BooksPage from './pages/BooksPage'
 import BookDetail from './pages/BookDetail'
 import { CheckSession } from './services/Auth'
-import Profile from './Profile'
+// import Profile from './Profile'
 import './App.css'
 
 
@@ -56,8 +56,8 @@ const App = () => {
       <main>
         //profile
         <div>
-          <h1>${user.name}'s Profile</h1>
-          <Profile user={user} />
+          {/* <h1>${user.name}'s Profile</h1>
+          <Profile user={user} /> */}
         </div>
         <Routes>
           <Route path="/" element={<Home />} />

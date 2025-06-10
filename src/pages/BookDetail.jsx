@@ -1,12 +1,14 @@
 import { useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { getBookById } from '../services/Book'
 import '../styles/BookDetail.css'
-import RatingComponent from '../components/RatingComponent';
+import RatingComponent from '../components/RatingComponent'
+import { AuthContext } from '../context/AuthContext'
 
 const BookDetail = () => {
   const { id } = useParams()
   const [book, setBook] = useState(null)
+  const { user } = useContext(AuthContext)
 
   useEffect(() => {
     const fetchBook = async () => {
@@ -55,23 +57,30 @@ const BookDetail = () => {
         <p>
           <strong>Download count:</strong> {book.download_count}
         </p>
-        <div className="book-detail-links">
-          {book.formats['text/html'] && (
-            <a href={book.formats['text/html']} target="_blank" rel="noreferrer">
-              📖 Read Online
-            </a>
-          )}
-          {book.formats['audio/mpeg'] && (
-            <a href={book.formats['audio/mpeg']} target="_blank" rel="noreferrer">
-              🎧 Listen (MP3)
-            </a>
-          )}
-        </div>
-        <RatingComponent bookId={book._id} />
+
+        {user ? (
+          <div className="book-detail-links">
+            {book.formats['text/html'] && (
+              <a href={book.formats['text/html']} target="_blank" rel="noreferrer">
+                📖 Read Online
+              </a>
+            )}
+            {book.formats['audio/mpeg'] && (
+              <a href={book.formats['audio/mpeg']} target="_blank" rel="noreferrer">
+                🎧 Listen (MP3)
+              </a>
+            )}
+          </div>
+        ) : (
+          <p style={{ marginTop: '1rem', fontStyle: 'italic', color: 'gray' }}>
+            Please log in to read or listen to this book.
+          </p>
+        )}
+
+        {user && <RatingComponent bookId={book._id} />}
       </div>
     </div>
   )
 }
 
 export default BookDetail
-
