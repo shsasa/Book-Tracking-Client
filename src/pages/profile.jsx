@@ -1,11 +1,15 @@
+import { AuthContext } from '../context/AuthContext'
+import { useContext } from 'react'
+
+
 const Profile = () => {
+  const { user } = useContext(AuthContext)
+
   return (
     <div>
-      {/* <h1> {user.name}'s Profile </h1> */}
-      <p>First Name:</p>
-      <p>Last Name:</p>
-      <p>Email:</p>
-      <p></p>
+      <h1>'s Profile</h1>
+
+      <p>User:{user.name} </p>
     </div>
   )
 }

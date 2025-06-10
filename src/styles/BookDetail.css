@@ -74,3 +74,19 @@
     height: 200px;
   }
 }
+
+.epub-reader-btn {
+  background: #a67c52;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.epub-reader-btn:hover {
+  background: #7c5c36;
+}

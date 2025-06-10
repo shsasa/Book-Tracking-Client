@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
 import { AuthContext } from '../context/AuthContext'
+
 import '../styles/Nav.css'
 
 const Nav = () => {
@@ -18,7 +19,8 @@ const Nav = () => {
 
           {user ? (
             <>
-              <li className="welcome">Welcome, {user.name}!</li>
+              <Link to="/profile">{user.name}</Link>
+
               {user.role === 'admin' && (
                 <li>
                   <Link to="/admin">Admin</Link>
