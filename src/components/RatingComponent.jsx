@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 
 const RatingComponent = () => {
-  const [rating, setRating] = useState(0);       // user-selected rating
-  const [submitted, setSubmitted] = useState(false); // if submitted
+  const [rating, setRating] = useState(0);
+  const [submitted, setSubmitted] = useState(false);
 
   const handleClick = (value) => {
     setRating(value);
@@ -10,11 +11,10 @@ const RatingComponent = () => {
 
   const handleSubmit = () => {
     if (rating > 0) {
-      console.log('Rating submitted:', rating);
+      toast.success(`You rated this book ${rating} stars! ⭐`);
       setSubmitted(true);
-      // You can send it to backend or store it here
     } else {
-      alert('Please select a rating before submitting.');
+      toast.error('Please select a rating before submitting.');
     }
   };
 
