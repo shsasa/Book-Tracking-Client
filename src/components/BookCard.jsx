@@ -44,7 +44,7 @@ const BookCard = ({
           </div>
         )}
 
-        {/* Show buttons only if user is logged in */}
+
         {user && (
           <div className="book-actions">
             <button onClick={() => onAddToFavorite(title)}>Add to Favorite</button>
