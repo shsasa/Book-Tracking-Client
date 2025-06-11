@@ -1,60 +1,69 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import BookCard from '../components/BookCard';
-import { getBooks } from '../services/Book';
-import '../styles/BooksPage.css'
-import { Link } from 'react-router-dom';
+import GenreFilter from '../components/GenreFilter';
+import SearchBar from '../components/SearchBar';
+import { getBooks, searchBooks } from '../services/Book';
+import '../styles/BooksPage.css';
+import { Link, useParams } from 'react-router-dom';
 
 const BooksPage = () => {
   const [books, setBooks] = useState([]);
+  const [filteredBooks, setFilteredBooks] = useState([]);
+  const [selectedGenre, setSelectedGenre] = useState('');
+  const { search } = useParams();
 
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const res = await getBooks();
+        let res;
+        if (search) {
+          res = await searchBooks(search);
+        } else {
+          res = await getBooks();
+        }
         setBooks(res);
+        setFilteredBooks(res);
       } catch (error) {
         console.error('Error fetching books:', error);
       }
     };
 
     fetchBooks();
-  }, []);
+  }, [search]);
 
-    const handleAddToFavorite = (bookTitle) => {
-    console.log(`Added to Favorite: ${bookTitle}`);
- 
-  };
-
-  const handleAddToRead = (bookTitle) => {
-    console.log(`Added to Read: ${bookTitle}`);
- 
-  };
-
-  const handleAddToCustomList = (bookTitle) => {
-    console.log(`Added to Custom List: ${bookTitle}`);
-  
+  const handleFilterChange = (genre) => {
+    setSelectedGenre(genre);
+    if (genre) {
+      setFilteredBooks(books.filter((book) => book.genre?.toLowerCase() === genre.toLowerCase()));
+    } else {
+      setFilteredBooks(books);
+    }
   };
 
   return (
-    <div className="books-grid">
-      {books.map((book) => (
-        <Link to={{
-          pathname: "/book/" + book.apiId }}   key={book.apiId || book.title}>
-             <BookCard
-            title={book.title}
-            poster_path={book.poster_path}
-            authors={book.authors}
-            year={book.year}
-            blocked={book.blocked}
-            onAddToFavorite={handleAddToFavorite}
-            onAddToRead={handleAddToRead}
-            onAddToCustomList={handleAddToCustomList}
-          />
-        </Link>
-      ))}
+    <div className="books-page">
+      <SearchBar onSearch={(query) => searchBooks(query)} />
+      <GenreFilter onFilterChange={handleFilterChange} />
+      
+      <div className="books-grid">
+        {filteredBooks.length > 0 ? (
+          filteredBooks.map((book) => (
+            <Link to={`/book/${book.apiId}`} key={book.apiId || book.title}>
+              <BookCard
+                title={book.title}
+                poster_path={book.poster_path}
+                authors={book.authors}
+                year={book.year}
+                blocked={book.blocked}
+              />
+            </Link>
+          ))
+        ) : (
+          <p>No books found.</p>
+        )}
+      </div>
     </div>
   );
 };
 
 export default BooksPage;
-
