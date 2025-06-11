@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom'
 import { useEffect, useState, useContext } from 'react'
+
 import { getBookById, updateRating, getBookRating, addOrRemoveBookFromFavorite } from '../services/book'
 import '../styles/BookDetail.css'
 import RatingComponent from '../components/RatingComponent'

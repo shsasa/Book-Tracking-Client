@@ -1,68 +1,76 @@
-/* Register.css */
-
+/* Register Page Styling */
 .register {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 70vh;
+  max-width: 450px;
+  margin: 50px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif;
 }
 
+/* Form Styling */
 .register form {
-  background: #fff8ee;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(58, 44, 26, 0.08);
-  padding: 32px 28px;
-  max-width: 370px;
-  width: 100%;
-  border: 1px solid #f1e3c6;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 15px;
 }
 
+/* Input Wrapper */
 .input-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 6px;
 }
 
 .input-wrapper label {
-  font-size: 1rem;
-  color: #7c5c36;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Lora', serif;
+  color: #333;
+  margin-bottom: 5px;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-  border: 1px solid #e2cdb0;
-  border-radius: 5px;
-  padding: 10px;
-  background: #fff;
-  color: #3a2c1a;
-  font-size: 1rem;
-  transition: border 0.2s;
+.input-wrapper input {
+  padding: 12px;
+  font-size: 16px;
+  border: 2px solid #6c63ff;
+  border-radius: 8px;
+  background: #f8f9fa;
+  transition: border-color 0.3s ease;
 }
 
-input:focus {
-  border: 1.5px solid #a67c52;
+.input-wrapper input:focus {
+  border-color: #5548c8;
   outline: none;
 }
 
-button[type="submit"] {
-  background-color: #a67c52;
-  color: #fff;
+/* Register Button */
+.register button {
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #6c63ff;
+  color: white;
   border: none;
-  border-radius: 6px;
-  padding: 12px 0;
-  font-size: 1.05rem;
-  font-weight: 600;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.2s;
-  margin-top: 10px;
+  transition: background 0.3s ease;
 }
 
-button[disabled] {
-  background: #e2cdb0;
+.register button:hover {
+  background-color: #5548c8;
+}
+
+/* Disabled Button */
+.register button:disabled {
+  background-color: #ccc;
   cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .register {
+    width: 90%;
+    padding: 20px;
+  }
 }

@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { getBookById } from '../services/Book'
+import { getBookById } from '../services/book'
 import '../styles/BookDetail.css'
 import RatingComponent from '../components/RatingComponent';
 import { ReactReader } from 'react-reader'
