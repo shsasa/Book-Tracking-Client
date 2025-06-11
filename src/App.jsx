@@ -11,8 +11,6 @@ import Search from './pages/Search'
 import BooksPage from './pages/BooksPage'
 import BookDetail from './pages/BookDetail'
 import { CheckSession } from './services/Auth'
-import { AuthContext } from './context/AuthContext'
-import FavoriteButton from './components/FavoriteButton'
 
 
 import './App.css'
@@ -23,7 +21,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 
-import Profile from './Profile'
+// import Profile from './Profile'
 import './App.css'
 
 const App = () => {
@@ -57,9 +55,7 @@ const App = () => {
   return (
     <>
       <Nav user={user} handleLogOut={handleLogOut} />
-      <Favorite /> {Favorited}
       <main>
-        //profile
         <div>
           {/* <h1>${user.name}'s Profile</h1>
           <Profile user={user} /> */}
@@ -73,7 +69,7 @@ const App = () => {
           <Route path="/book/:id" element={<BookDetail />} />
           <Route path="/search/:search" element={<Search />} />
           <Route path="/admin" element={<Admin />} />
-          <Route path="/profile" element={<Profile />} />
+          {/* <Route path="/profile" element={<Profile />} /> */}
         </Routes>
       </main>
     </>

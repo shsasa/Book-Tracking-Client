@@ -1,12 +1,10 @@
 import { useParams } from 'react-router-dom'
 import { useEffect, useState, useContext } from 'react'
-import { getBookById } from '../services/Book'
+import { getBookById, getBookUrl } from '../services/Book'
 import '../styles/BookDetail.css'
 import RatingComponent from '../components/RatingComponent'
 import { AuthContext } from '../context/AuthContext'
-import RatingComponent from '../components/RatingComponent';
 import { ReactReader } from 'react-reader'
-import { getBookUrl } from '../services/Book'
 
 const BookDetail = () => {
   const { id } = useParams()
@@ -57,29 +55,23 @@ const BookDetail = () => {
       } catch (err) {
         console.error('Error loading book:', err)
       }
-
     }
     fetchBook()
-
-    // Fetch the epub URL if it exists
-
   }, [id])
+
   useEffect(() => {
     if (book?.formats) {
       const epubLink = extractEpubUrl(book.formats);
       if (epubLink) {
         getBooksUrl(epubLink);
+      } else {
+        setBookAvailable(false);
+        setEpubUrl(null);
       }
     }
   }, [book])
 
-
-
   if (!book) return <p>Loading...</p>
-
-
-
-  // Find the epub format url
 
   return (
     <div className="book-detail">
@@ -92,9 +84,9 @@ const BookDetail = () => {
         <h1>{book.title}</h1>
         <p>
           <strong>Authors:</strong>{" "}
-          {book.authors.map((a) =>
+          {book.authors?.map((a) =>
             `${a.name}${a.birth_year ? ` (${a.birth_year}–${a.death_year || ''})` : ''}`
-          ).join(', ')}
+          ).join(', ') || 'Unknown'}
         </p>
         {book.subjects?.length > 0 && (
           <p>
@@ -116,47 +108,37 @@ const BookDetail = () => {
         </p>
 
         {user ? (
-          <div className="book-detail-links">
-            {book.formats['text/html'] && (
-              <a href={book.formats['text/html']} target="_blank" rel="noreferrer">
-                📖 Read Online
-              </a>
-            )}
-            {book.formats['audio/mpeg'] && (
-              <a href={book.formats['audio/mpeg']} target="_blank" rel="noreferrer">
-                🎧 Listen (MP3)
-              </a>
-            )}
-          </div>
+          <>
+            <div className="book-detail-links">
+              {book.formats['text/html'] && (
+                <a href={book.formats['text/html']} target="_blank" rel="noreferrer">
+                  📖 Read Online
+                </a>
+              )}
+              {book.formats['audio/mpeg'] && (
+                <a href={book.formats['audio/mpeg']} target="_blank" rel="noreferrer">
+                  🎧 Listen (MP3)
+                </a>
+              )}
+              {bookAvailable && epubUrl && (
+                <button
+                  className="epub-reader-btn"
+                  onClick={() => setShowReader(!showReader)}
+                  style={{ marginLeft: 10 }}
+                >
+                  📚 Read EPUB
+                </button>
+              )}
+            </div>
+            <RatingComponent bookId={book._id} />
+          </>
         ) : (
           <p style={{ marginTop: '1rem', fontStyle: 'italic', color: 'gray' }}>
             Please log in to read or listen to this book.
           </p>
         )}
 
-        {user && <RatingComponent bookId={book._id} />}
-        <div className="book-detail-links">
-          {book.formats['text/html'] && (
-            <a href={book.formats['text/html']} target="_blank" rel="noreferrer">
-              📖 Read Online
-            </a>
-          )}
-          {book.formats['audio/mpeg'] && (
-            <a href={book.formats['audio/mpeg']} target="_blank" rel="noreferrer">
-              🎧 Listen (MP3)
-            </a>
-          )}
-          {epubUrl && (
-            <button
-              className="epub-reader-btn"
-              onClick={() => setShowReader(!showReader)}
-              style={{ marginLeft: 10 }}
-            >
-              📚 Read EPUB
-            </button>
-          )}
-        </div>
-        {showReader && bookAvailable && (
+        {showReader && bookAvailable && epubUrl && (
           <div style={{ height: '70vh', marginTop: 24 }}>
             <ReactReader
               url={epubUrl}
@@ -173,11 +155,9 @@ const BookDetail = () => {
             </button>
           </div>
         )}
-        <RatingComponent bookId={book._id} />
       </div>
     </div>
   )
 }
-
 
 export default BookDetail
