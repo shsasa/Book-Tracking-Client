@@ -1,106 +1,151 @@
-/* Book Detail Page */
-.book-detail {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 20px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  font-family: 'Poppins', sans-serif;
+/* ==== Book Detail Main Container ==== */
+.book-detail-main-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 1rem 2rem 1rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ef 100%);
+  border-radius: 18px;
+  min-height: 100vh;
+}
+
+/* ==== Book Detail Flex Layout ==== */
+.book-detail-flex {
   display: flex;
-  gap: 20px;
+  gap: 2.5rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
 }
 
-/* Book Cover */
+/* ==== Book Cover ==== */
+.book-detail-cover-col {
+  flex: 0 0 260px;
+  display: flex;
+  justify-content: center;
+}
+
 .book-detail-cover {
-  width: 250px;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 220px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(34, 34, 59, 0.08);
+  background: #fff;
 }
 
-/* Book Info */
-.book-detail-info {
+/* ==== Book Info ==== */
+.book-detail-info-col {
   flex: 1;
+  min-width: 270px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 4px 18px rgba(34, 34, 59, 0.08);
 }
 
-.book-detail-info h1 {
-  font-size: 24px;
-  font-weight: bold;
-  font-family: 'Lora', serif;
+.book-detail-title {
+  font-size: 2.1rem;
+  font-family: 'Merriweather', serif;
+  color: #22223b;
+  margin-bottom: 0.7rem;
+}
+
+.book-detail-authors,
+.book-detail-subjects,
+.book-detail-bookshelves,
+.book-detail-languages,
+.book-detail-download-count {
+  margin-bottom: 0.5rem;
+  color: #444;
+  font-size: 1.08rem;
+}
+
+.book-detail-summary {
+  margin: 1rem 0;
+  background: #f8f8fa;
+  padding: 1rem;
+  border-radius: 8px;
   color: #333;
-  margin-bottom: 10px;
+  font-size: 1.08rem;
 }
 
-.book-detail-info p {
-  font-size: 16px;
-  color: #555;
-  margin-bottom: 8px;
-}
-
-/* Book Metadata */
-.book-detail-info strong {
+.book-detail-info-col strong {
   font-weight: bold;
   color: #6c63ff;
 }
 
-/* Book Links */
+/* ==== Book Links ==== */
 .book-detail-links {
-  margin-top: 20px;
   display: flex;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1.2rem 0 1.2rem 0;
 }
 
-.book-detail-links a {
-  padding: 10px 15px;
-  font-size: 16px;
-  background-color: #6c63ff;
-  color: white;
-  border-radius: 8px;
+.book-link-btn {
+  display: inline-block;
+  background: #6c63ff;
+  color: #fff;
+  padding: 8px 18px;
+  border-radius: 6px;
   text-decoration: none;
-  transition: background 0.3s ease;
+  font-weight: 500;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  transition: background 0.2s;
+}
+.book-link-btn:hover {
+  background: #5548c8;
 }
 
-.book-detail-links a:hover {
-  background-color: #5548c8;
-}
-
-/* EPUB Reader Button */
-.epub-reader-btn {
-  padding: 10px 15px;
-  font-size: 16px;
-  background-color: #ff4d4d;
-  color: white;
+/* ==== Action Buttons ==== */
+.book-detail-action-btn {
+  background: #6c63ff;
+  color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
+  padding: 8px 22px;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s ease;
+  margin-top: 0.5rem;
+  transition: background 0.2s;
+}
+.book-detail-action-btn:hover {
+  background: #5548c8;
 }
 
-.epub-reader-btn:hover {
-  background-color: #cc0000;
+/* ==== Comments Section ==== */
+.comments-section {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  margin-top: 2.5rem;
+  box-shadow: 0 4px 18px rgba(34, 34, 59, 0.08);
 }
 
-/* Rating Component */
-.rating-component {
-  margin-top: 20px;
-  text-align: center;
+.comments-section h3 {
+  margin-bottom: 1rem;
+  color: #22223b;
+  font-size: 1.3rem;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .book-detail {
+/* ==== Responsive Design ==== */
+@media (max-width: 900px) {
+  .book-detail-flex {
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
-
-  .book-detail-cover {
-    width: 200px;
+  .book-detail-info-col {
+    padding: 1.2rem 0.5rem;
   }
-
+  .book-detail-cover {
+    width: 180px;
+    height: 260px;
+  }
   .book-detail-links {
     flex-direction: column;
     align-items: center;
   }
 }
+

@@ -48,3 +48,23 @@ export const addCommentToBook = async (bookId, commentData) => {
   const res = await Client.post(`/book/${bookId}/comment`, commentData);
   return res.data;
 }
+
+export const addBookToReadList = async (bookId) => {
+  const res = await Client.post('/book/read', { bookId });
+  return res.data;
+};
+
+export const updateReadBook = async (bookId, updateData) => {
+  const res = await Client.put(`/book/read/${bookId}`, updateData);
+  return res.data;
+};
+
+export const removeBookFromReadList = async (bookId) => {
+  const res = await Client.delete(`/book/read/${bookId}`);
+  return res.data;
+};
+
+export const getUserReadList = async () => {
+  const res = await Client.get('/book/read/user');
+  return res.data;
+};

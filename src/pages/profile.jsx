@@ -3,6 +3,9 @@ import { useContext, useState, useEffect } from 'react'
 import { updatePassword } from '../services/user'
 import { getFavoriteBooks } from '../services/book'
 import BookCard from '../components/BookCard'
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom'
+
 
 const Profile = () => {
   const { user } = useContext(AuthContext)
@@ -10,8 +13,8 @@ const Profile = () => {
   const [oldPassword, setOldPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const [message, setMessage] = useState('')
   const [favoriteBooks, setFavoriteBooks] = useState([])
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchFavorites = async () => {
@@ -21,6 +24,7 @@ const Profile = () => {
           setFavoriteBooks(Array.isArray(result.books) ? result.books : []);
         } catch (err) {
           setFavoriteBooks([]);
+          toast.error('Failed to load favorite books');
         }
       }
     };
@@ -29,23 +33,23 @@ const Profile = () => {
 
   const handlePasswordChange = async (e) => {
     e.preventDefault()
-    setMessage('')
     if (newPassword !== confirmPassword) {
-      setMessage('New passwords do not match')
+      toast.error('New passwords do not match');
       return
     }
     try {
       const response = await updatePassword(oldPassword, newPassword)
       if (response.success) {
-        setMessage('Password changed successfully')
+        toast.success('Password changed successfully');
         setOldPassword('')
         setNewPassword('')
         setConfirmPassword('')
+        setShowPasswordForm(false)
       } else {
-        setMessage(response.message || 'Failed to change password')
+        toast.error(response.message || 'Failed to change password')
       }
     } catch (err) {
-      setMessage('An error occurred while changing the password')
+      toast.error('An error occurred while changing the password')
     }
   }
 
@@ -94,8 +98,6 @@ const Profile = () => {
         </form>
       )}
 
-      {message && <p style={{ color: message.includes('success') ? 'green' : 'red' }}>{message}</p>}
-
       <div className="favorite-books-section" style={{ marginTop: '2rem' }}>
         <h2>Favorite Books</h2>
         {favoriteBooks.length === 0 ? (
@@ -103,15 +105,20 @@ const Profile = () => {
         ) : (
           <div className="books-grid">
             {(Array.isArray(favoriteBooks) ? favoriteBooks : []).map((book) => (
-              <BookCard
-                key={book.ـid}
-                id={book.id}
-                title={book.title}
-                poster_path={book.poster_path}
-                authors={book.authors}
-                year={book.year}
-                blocked={book.blocked}
-              />
+              <div
+                key={book._id || book.id}
+                style={{ cursor: 'pointer' }}
+                onClick={() => navigate(`/book/${book.apiId}`)}
+              >
+                <BookCard
+                  id={book._id || book.id}
+                  title={book.title}
+                  poster_path={book.poster_path}
+                  authors={book.authors}
+                  year={book.year}
+                  blocked={book.blocked}
+                />
+              </div>
             ))}
           </div>
         )}
