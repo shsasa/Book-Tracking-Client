@@ -1,76 +1,67 @@
-/* Sign-In Page Styling */
+body {
+  background: rgb(202, 196, 196) !important;
+}
+
 .signin {
   max-width: 400px;
   margin: 50px auto;
   padding: 30px;
-  background: white;
+  background: linear-gradient(135deg, #99b3ff, #ff99b3);
+  padding: 30px;
   border-radius: 12px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
   font-family: 'Poppins', sans-serif;
+  color: rgb(182, 0, 0);
 }
 
-/* Form Styling */
 .signin form {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-/* Input Wrapper */
-.input-wrapper {
-  display: flex;
-  flex-direction: column;
-}
-
 .input-wrapper label {
   font-size: 16px;
   font-weight: bold;
   font-family: 'Lora', serif;
-  color: #333;
-  margin-bottom: 5px;
+  color: white;
 }
 
 .input-wrapper input {
   padding: 12px;
   font-size: 16px;
-  border: 2px solid #6c63ff;
+  border: 2px solid #6678cc;
   border-radius: 8px;
-  background: #f8f9fa;
-  transition: border-color 0.3s ease;
+  background: rgba(191, 197, 230, 0.5);
+  color: white;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .input-wrapper input:focus {
-  border-color: #5548c8;
+  border-color: #5564b0;
   outline: none;
+  box-shadow: 0px 0px 8px rgba(102, 120, 204, 0.5);
 }
 
-/* Sign-In Button */
 .signin button {
   padding: 12px;
   font-size: 16px;
   font-weight: bold;
-  background-color: #6c63ff;
+  background: linear-gradient(135deg, #5c82f5, #fd5781);
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease, filter 0.3s ease;
 }
 
 .signin button:hover {
-  background-color: #5548c8;
+  filter: brightness(1.2);
+  transform: translateY(-3px);
+  box-shadow: 0px 6px 12px rgba(102, 120, 204, 0.4);
 }
 
-/* Disabled Button */
-.signin button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-/* Responsive Design */
-@media (max-width: 600px) {
-  .signin {
-    width: 90%;
-    padding: 20px;
-  }
+.signin button:active {
+  transform: scale(0.95);
+  background: linear-gradient(135deg, #ff99b3, #99b3ff);
 }
