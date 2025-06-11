@@ -7,11 +7,7 @@ const FavoriteButton = () => {
     setIsFavorited(!isFavorited)
   }
 
-  return (
-    <button onClick={toggleFavorite} className="favorite-btn">
-      {isFavorited ? <FaHeart className="favorited" /> : <FaRegHeart />}
-    </button>
-  )
+  return <button onClick={toggleFavorite} className="favorite-btn"></button>
 }
 
 export default FavoriteButton
