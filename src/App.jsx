@@ -12,6 +12,7 @@ import BooksPage from './pages/BooksPage'
 import BookDetail from './pages/BookDetail'
 import { CheckSession } from './services/Auth'
 import Profile from './pages/profile'
+import ReadingList from './pages/ReadingList'
 
 
 
@@ -45,7 +46,6 @@ const App = () => {
   const checkSession = async () => {
     try {
       const user = await CheckSession()
-      console.log('User session:', user)
       login(user)
     } catch (error) {
       console.error('Session check failed:', error)
@@ -71,6 +71,7 @@ const App = () => {
           <Route path="/search/:search" element={<Search />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/reading-list" element={<ReadingList />} />
 
           {/* <Route path="/profile" element={<Profile />} /> */}
         </Routes>
