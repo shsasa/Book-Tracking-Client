@@ -12,7 +12,6 @@ export const getBookById = async (id) => {
 };
 
 export const searchBooks = async (query) => {
-  console.log(query);
   const res = await Client.get(`/book/search/${query}`, {});
   return res.data;
 };
@@ -23,7 +22,6 @@ export const updateRating = async (bookId, ratingData) => {
 };
 export const getBookRating = async (bookId) => {
   const res = await Client.get(`/book/${bookId}/rating`);
-  console.log(res.data);
   return res.data;
 }
 
@@ -45,3 +43,8 @@ export const getFavoriteBooks = async () => {
   const res = await Client.get('/book/favorites/');
   return res.data;
 };
+
+export const addCommentToBook = async (bookId, commentData) => {
+  const res = await Client.post(`/book/${bookId}/comment`, commentData);
+  return res.data;
+}

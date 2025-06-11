@@ -45,7 +45,6 @@ const App = () => {
   const checkSession = async () => {
     try {
       const user = await CheckSession()
-      console.log('User session:', user)
       login(user)
     } catch (error) {
       console.error('Session check failed:', error)
