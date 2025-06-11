@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getBooks } from '../services/Book';
+import { getBooks } from '../services/book';
 import BookCard from '../components/BookCard';
 import '../styles/Home.css';
 import { Link } from 'react-router-dom';

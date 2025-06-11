@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import BookCard from '../components/BookCard';
 import GenreFilter from '../components/GenreFilter';
 import SearchBar from '../components/SearchBar';
-import { getBooks, searchBooks } from '../services/Book';
+import { getBooks, searchBooks } from '../services/book';
 import '../styles/BooksPage.css';
 import { Link, useParams } from 'react-router-dom';
 
@@ -44,7 +44,7 @@ const BooksPage = () => {
     <div className="books-page">
       <SearchBar onSearch={(query) => searchBooks(query)} />
       <GenreFilter onFilterChange={handleFilterChange} />
-      
+
       <div className="books-grid">
         {filteredBooks.length > 0 ? (
           filteredBooks.map((book) => (
