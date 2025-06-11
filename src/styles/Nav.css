@@ -1,40 +1,56 @@
+/* Import Font */
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Shadow&display=swap');
+
 /* Header */
 .main-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 20px;
-  background: #6c63ff;
-  color: white;
+  background: transparent;
+  color: #C2185B;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
 
 /* Home Icon */
 .home-icon {
   font-size: 26px;
-  color: white;
-  margin-right: auto; /* Aligns to left */
+  color: #C2185B;
   text-decoration: none;
 }
 
-/* Logo */
+/* Styled Logo (Left-Aligned) */
 .logo {
-  font-size: 24px;
-  font-family: "Playfair Display", serif;
+  margin-left: 20px; /* Push to the left */
+}
+
+.logo h1 {
+  font-size: 36px;
+  font-family: "Londrina Shadow", sans-serif;
+  color: #C2185B;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
 }
 
 /* Menu Toggle Button */
 .menu-toggle {
   background: none;
   border: none;
-  color: white;
+  color: #C2185B;
   font-size: 24px;
   cursor: pointer;
+  margin-left: auto; /* Push to the right */
 }
 
 /* Sidebar Menu */
 .sidebar {
   position: fixed;
-  right: -250px; /* Sidebar now opens from the right */
+  right: -250px;
   top: 0;
   height: 100vh;
   width: 250px;
@@ -44,6 +60,7 @@
   transition: right 0.3s ease;
 }
 
+/* Open Sidebar */
 .sidebar.open {
   right: 0;
 }
@@ -56,28 +73,56 @@
 
 .nav-links li {
   padding: 15px;
+  text-align: center;
 }
 
 .nav-links a {
   text-decoration: none;
   color: #333;
   font-size: 18px;
+  display: block;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background 0.3s ease;
 }
 
 .nav-links a:hover {
-  color: #6c63ff;
+  background: #F8BBD0;
+  color: #C2185B;
 }
 
 /* Logout Button */
 .logout-btn {
   background: #ff4d4d;
   border: none;
-  padding: 10px;
+  padding: 12px;
   color: white;
   cursor: pointer;
   width: 100%;
+  font-size: 16px;
+  border-radius: 8px;
+  transition: background 0.3s ease;
 }
 
 .logout-btn:hover {
   background: #cc0000;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main-header {
+    padding: 12px 15px;
+  }
+
+  .logo h1 {
+    font-size: 28px;
+  }
+
+  .menu-toggle {
+    font-size: 22px;
+  }
+
+  .sidebar {
+    width: 200px;
+  }
 }

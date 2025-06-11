@@ -3,6 +3,7 @@ import { RegisterUser } from '../services/Auth';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Register.css';
 import { toast } from 'react-toastify';
+import logo from '../assets/finallogo.png'; // Import logo
 
 const Register = () => {
   const initialState = {
@@ -36,7 +37,15 @@ const Register = () => {
   };
 
   return (
-    <div className="col register">
+    <div className="register">
+      {/* Logo at the top */}
+      <div className="logo-container">
+        <img src={logo} alt="BookWorm Logo" />
+      </div>
+
+      {/* Styled "Register" text */}
+      <h2 className="register-text">Register</h2>
+
       <form onSubmit={handleSubmit}>
         <div className="input-wrapper">
           <label htmlFor="name">Name</label>

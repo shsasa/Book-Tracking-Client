@@ -3,17 +3,19 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
-  font-family: 'Playfair Display', serif;
-  background: linear-gradient(to bottom, #f8f9fa, #e3e6ea);
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to bottom, #F8BBD0, #E3F2FD); /* Matching theme */
   text-align: center;
+  border-radius: 20px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 /* Stylish Heading */
 h2 {
   font-size: 36px;
   font-weight: bold;
-  font-family: 'Playfair Display', serif;
-  color: #333;
+  font-family: "Londrina Shadow", sans-serif; /* Matching theme */
+  color: #C2185B;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   margin-bottom: 20px;
@@ -44,16 +46,22 @@ h2 {
 .search-bar input {
   flex: 1;
   padding: 14px;
-  border: 2px solid #6c63ff;
+  border: 2px solid #90CAF9;
   border-radius: 8px;
   font-size: 18px;
   font-family: 'Poppins', sans-serif;
+  background: #E3F2FD;
+}
+
+.search-bar input:focus {
+  border-color: #1976D2;
+  outline: none;
 }
 
 /* Search Button */
 .search-bar button {
   padding: 14px 20px;
-  background-color: #6c63ff;
+  background-color: #C2185B;
   color: white;
   border: none;
   border-radius: 8px;
@@ -63,10 +71,10 @@ h2 {
 }
 
 .search-bar button:hover {
-  background-color: #5548c8;
+  background-color: #880E4F;
 }
 
-/* Genre Filter - Smaller */
+/* Genre Filter */
 .genre-filter {
   flex: 1;
   display: flex;
@@ -78,13 +86,12 @@ h2 {
   padding: 14px;
   font-size: 16px;
   border-radius: 8px;
-  border: 2px solid #6c63ff;
+  border: 2px solid #90CAF9;
   background: white;
   font-family: 'Poppins', sans-serif;
 }
 
-
-/* Book Grid - Fixed Size Cards in Grid Layout */
+/* Book Grid */
 .books-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -92,7 +99,7 @@ h2 {
   padding: 20px;
 }
 
-/* Book Card - Consistent Size */
+/* Book Card */
 .book-card {
   background: white;
   border-radius: 12px;
@@ -124,8 +131,8 @@ h2 {
 .book-title {
   font-size: 22px;
   font-weight: bold;
-  font-family: 'Playfair Display', serif;
-  color: #333;
+  font-family: "Londrina Shadow", sans-serif;
+  color: #C2185B;
   margin-bottom: 8px;
 }
 
@@ -168,4 +175,30 @@ h2 {
   .books-grid {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
+}
+/* Logo Container */
+.logo-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.logo-container img {
+  width: 120px; /* Adjusted size */
+  height: auto;
+}
+
+/* Centered Title */
+.home-title {
+  font-size: 36px;
+  font-weight: bold;
+  font-family: "Londrina Shadow", sans-serif;
+  color: #C2185B;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center; /* Centered */
+  margin-bottom: 40px;
+}
+/* Removed Genre Filter */
+.genre-filter {
+  display: none;
 }

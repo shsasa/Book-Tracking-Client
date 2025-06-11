@@ -1,9 +1,9 @@
 /* Book Card Container */
 .book-card {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  padding: 16px;
+  background: #F8BBD0; /* Matching theme */
+  border-radius: 20px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+  padding: 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -13,47 +13,49 @@
 
 /* Hover Effect */
 .book-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px);
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
 }
 
 /* Book Poster */
 .book-poster {
   width: 100%;
-  max-width: 180px;
+  max-width: 200px; /* Slightly larger */
   height: auto;
-  border-radius: 8px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Book Title */
 .book-title {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
-  font-family: 'Lora', serif;
-  color: #333;
-  margin-top: 10px;
+  font-family: "Londrina Shadow", sans-serif; /* Matching theme */
+  color: #C2185B;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-top: 12px;
 }
 
 /* Book Authors */
 .book-authors {
-  font-size: 16px;
+  font-size: 18px;
   font-family: 'Poppins', sans-serif;
   color: #666;
-  margin-top: 5px;
+  margin-top: 6px;
 }
 
 /* Book Year */
 .book-year {
-  font-size: 14px;
+  font-size: 16px;
   font-family: 'Poppins', sans-serif;
   color: #888;
-  margin-top: 5px;
+  margin-top: 6px;
 }
 
 /* Blocked Book Styling */
 .book-card.blocked {
-  opacity: 0.6;
+  opacity: 0.5;
   pointer-events: none;
   position: relative;
 }
@@ -66,25 +68,25 @@
   transform: translate(-50%, -50%);
   background: rgba(255, 0, 0, 0.8);
   color: white;
-  padding: 5px 10px;
-  border-radius: 6px;
-  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 16px;
 }
 
 /* Book Actions */
 .book-actions {
   display: flex;
-  gap: 10px;
-  margin-top: 15px;
+  gap: 12px;
+  margin-top: 18px;
 }
 
 .book-actions button {
-  padding: 8px 12px;
-  font-size: 14px;
+  padding: 10px 14px;
+  font-size: 16px;
   background-color: #6c63ff;
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
   transition: background 0.3s ease;
 }
@@ -96,15 +98,15 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .book-card {
-    padding: 12px;
+    padding: 16px;
   }
 
   .book-title {
-    font-size: 18px;
+    font-size: 20px;
   }
 
   .book-actions {
     flex-direction: column;
-    gap: 5px;
+    gap: 8px;
   }
 }

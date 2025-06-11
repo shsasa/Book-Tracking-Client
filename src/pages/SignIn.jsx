@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import '../styles/SignIn.css';
 import { toast } from 'react-toastify';
+import logo from '../assets/finallogo.png'; // Import logo
 
 const SignIn = () => {
   const initialState = { email: '', password: '' };
@@ -29,8 +30,16 @@ const SignIn = () => {
   };
 
   return (
-    <div className="col signin">
-      <form className="col" onSubmit={handleSubmit}>
+    <div className="signin">
+      {/* Logo at the top */}
+      <div className="logo-container">
+        <img src={logo} alt="BookWorm Logo" />
+      </div>
+
+      {/* Styled "Sign In" text */}
+      <h2 className="signin-text">Sign In</h2>
+
+      <form onSubmit={handleSubmit}>
         <div className="input-wrapper">
           <label htmlFor="email">Email</label>
           <input onChange={handleChange} id="email" type="email" placeholder="example@example.com" value={formValues.email} required autoComplete="email" />

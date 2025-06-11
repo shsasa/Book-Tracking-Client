@@ -28,7 +28,7 @@ const Nav = () => {
         <Link className="home-icon" to="/">
           <FaHome />
         </Link>
-        <Link className="logo" to="/">BookWorm</Link>
+        <Link className="logo" to="/"><h1>BookWorm</h1></Link>
         <button
           className="menu-toggle"
           onClick={e => {
