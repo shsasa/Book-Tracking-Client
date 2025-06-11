@@ -4,15 +4,35 @@ import { getBookById } from '../services/book'
 import '../styles/BookDetail.css'
 import RatingComponent from '../components/RatingComponent';
 import { ReactReader } from 'react-reader'
-import { getBookUrl } from '../services/Book'
+import { getBookUrl , updateRating } from '../services/Book'
 
-const BookDetail = () => {
+const BookDetail = ( ) => {
   const { id } = useParams()
   const [book, setBook] = useState(null)
   const [showReader, setShowReader] = useState(false)
   const [location, setLocation] = useState(null)
   const [epubUrl, setEpubUrl] = useState(null)
   const [bookAvailable, setBookAvailable] = useState(false)
+
+
+  const updateRatingHandel = (rating) => {
+    if (!book) return;
+
+    const ratingData = {
+      userId: 'currentUserId', // Replace with actual user ID
+      rating: rating
+    };
+
+    updateRating(book._id, ratingData)
+      .then(res => {
+        console.log('Rating updated successfully:', res);
+      })
+      .catch(err => {
+        console.error('Error updating rating:', err);
+      });
+
+  }
+    
 
 
   const getBooksUrl = async (url) => {

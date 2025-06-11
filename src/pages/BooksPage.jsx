@@ -44,7 +44,7 @@ const BooksPage = () => {
     <div className="books-page">
       <SearchBar onSearch={(query) => searchBooks(query)} />
       <GenreFilter onFilterChange={handleFilterChange} />
-      
+
       <div className="books-grid">
         {filteredBooks.length > 0 ? (
           filteredBooks.map((book) => (
