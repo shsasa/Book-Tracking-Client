@@ -1,101 +1,73 @@
+/* Global Styles */
 body {
   margin: 0;
-  box-sizing: border-box;
-  background-color: #f8eddd;
-  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
-  color: #3a2c1a;
-  /* Dark brown for good contrast */
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to bottom, #f8f9fa, #e3e6ea);
+  color: #333;
 }
 
-.user-card {
-  display: block;
-  width: 100%;
-  max-width: 400px;
+/* Main Container */
+main {
+  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Headings */
+h1, h2, h3 {
+  font-family: 'Lora', serif;
+  color: #222;
+}
+
+/* Links */
 a {
-  color: #a67c52;
-  /* Warm brown for links */
   text-decoration: none;
-  transition: color 0.2s;
+  color: #6c63ff;
+  transition: color 0.3s ease;
 }
 
 a:hover {
-  color: #7c5c36;
+  color: #5548c8;
 }
 
-.user-card {
-  display: block;
-  width: 100%;
-  max-width: 400px;
-  margin: 32px auto;
-  padding: 24px;
-  background-color: #fff8ee;
-  /* Slightly lighter than body */
-  border-radius: 10px;
-  box-shadow: 0 4px 16px rgba(58, 44, 26, 0.08);
-  border: 1px solid #f1e3c6;
-}
-
+/* Buttons */
 button {
-  background-color: #a67c52;
-  color: #fff;
+  padding: 10px 15px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #6c63ff;
+  color: white;
   border: none;
-  border-radius: 6px;
-  padding: 10px 18px;
-  font-size: 1rem;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.3s ease;
 }
 
 button:hover {
-  background-color: #7c5c36;
+  background-color: #5548c8;
 }
 
-input,
-textarea,
-select {
-  border: 1px solid #e2cdb0;
-  border-radius: 5px;
-  padding: 8px;
-  background: #fff;
-  color: #3a2c1a;
-  margin-bottom: 12px;
-  font-size: 1rem;
+/* Disabled Button */
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: #7c5c36;
-  margin-top: 0;
+/* Toast Notifications */
+.Toastify__toast {
+  font-family: 'Poppins', sans-serif;
+  border-radius: 8px;
 }
 
-::-webkit-scrollbar {
-  width: 8px;
-  background: #f1e3c6;
-}
+/* Responsive Design */
+@media (max-width: 768px) {
+  main {
+    padding: 15px;
+  }
 
-::-webkit-scrollbar-thumb {
-  background: #e2cdb0;
-  border-radius: 4px;
-}
-
-.favorite {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: rgb(201, 31, 164);
-  color: white;
-  padding: 10px;
-  border-radius: 50%;
-  cursor: pointer;
+  button {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
 }

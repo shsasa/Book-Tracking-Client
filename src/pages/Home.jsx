@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getBooks } from '../services/Book';
+import { getBooks } from '../services/book';
 import BookCard from '../components/BookCard';
 import '../styles/Home.css';
 import { Link } from 'react-router-dom';
@@ -41,7 +41,7 @@ const Home = () => {
       <GenreFilter onFilterChange={handleFilterChange} />
 
       <section className="recent-books">
-        <h2>Recently Added Books</h2>
+        <h2>Viewed Books</h2>
         <div className="books-grid">
           {filteredBooks.map((book) => (
             <Link to={`/book/${book.apiId}`} key={book.apiId || book.title}>

@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom'
 import { useEffect, useState, useContext } from 'react'
-import { getBookById, getBookUrl } from '../services/Book'
+import { getBookById, getBookUrl } from '../services/book'
 import '../styles/BookDetail.css'
 import RatingComponent from '../components/RatingComponent'
 import { AuthContext } from '../context/AuthContext'

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import BookCard from '../components/BookCard';
 import GenreFilter from '../components/GenreFilter';
 import SearchBar from '../components/SearchBar';
-import { getBooks, searchBooks } from '../services/Book';
+import { getBooks, searchBooks } from '../services/book';
 import '../styles/BooksPage.css';
 import { Link, useParams } from 'react-router-dom';
 
