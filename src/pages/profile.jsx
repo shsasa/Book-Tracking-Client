@@ -104,7 +104,7 @@ const Profile = () => {
           <div className="books-grid">
             {(Array.isArray(favoriteBooks) ? favoriteBooks : []).map((book) => (
               <BookCard
-                key={book.id}
+                key={book.ـid}
                 id={book.id}
                 title={book.title}
                 poster_path={book.poster_path}
