@@ -34,4 +34,14 @@ export const getBookUrl = async (epubLink) => {
   if (!data.url) throw new Error('No EPUB URL returned');
 
   return `http://localhost:3000${data.url}`;
+}
+
+export const addOrRemoveBookFromFavorite = async (bookId) => {
+  const res = await Client.post(`/book/${bookId}/favorite`);
+  return res.data;
+}
+
+export const getFavoriteBooks = async () => {
+  const res = await Client.get('/book/favorites/');
+  return res.data;
 };

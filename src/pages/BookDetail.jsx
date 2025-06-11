@@ -1,15 +1,17 @@
 import { useParams } from 'react-router-dom'
 import { useEffect, useState, useContext } from 'react'
-import { getBookById, updateRating, getBookRating } from '../services/book'
+import { getBookById, updateRating, getBookRating, addOrRemoveBookFromFavorite } from '../services/book'
 import '../styles/BookDetail.css'
 import RatingComponent from '../components/RatingComponent'
 import { AuthContext } from '../context/AuthContext'
+import FavoriteButton from '../components/FavoriteButton'
 
 const BookDetail = () => {
   const { id } = useParams()
   const [book, setBook] = useState(null)
   const { user } = useContext(AuthContext)
   const [bookRating, setBookRating] = useState(null)
+  const [isFavorited, setIsFavorited] = useState(false)
 
   const updateRatingHandel = async (rating) => {
     if (!book) return;
@@ -23,17 +25,33 @@ const BookDetail = () => {
     }
   }
 
+  const handleToggleFavorite = async (newState) => {
+    if (!user) {
+      alert('You must be logged in to favorite books.');
+      return;
+    }
+    try {
+      await addOrRemoveBookFromFavorite(book.id);
+      setIsFavorited(newState);
+    } catch (err) {
+      alert('Error updating favorite status.');
+    }
+  };
+
   useEffect(() => {
     const fetchBook = async () => {
       try {
         const res = await getBookById(id);
         setBook(res);
+        setIsFavorited(res.isFavorite || false);
+
         if (user) {
           const bookRating = await getBookRating(id);
           setBookRating(bookRating.rating.rating);
         } else {
           setBookRating(null);
         }
+        // setIsFavorited( ... );
       } catch (err) {
         console.error('Error loading book:', err);
       }
@@ -86,9 +104,13 @@ const BookDetail = () => {
                 </a>
               )}
             </div>
-            {user ? (
-              <RatingComponent onChaneHandel={updateRatingHandel} userRating={bookRating || 0} />
-            ) : (<div></div>)}
+            <FavoriteButton
+              bookId={book.id}
+              user={user}
+              isInitiallyFavorited={isFavorited}
+              onToggle={handleToggleFavorite}
+            />
+            <RatingComponent onChaneHandel={updateRatingHandel} userRating={bookRating || 0} />
           </>
         ) : (
           <p style={{ marginTop: '1rem', fontStyle: 'italic', color: 'gray' }}>

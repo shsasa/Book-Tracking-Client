@@ -16,3 +16,8 @@ export const getAllUsers = async () => {
   const res = await Client.get('/user')
   return res.data
 }
+
+export const updatePassword = async (oldPassword, newPassword) => {
+  const res = await Client.put('/auth/updatePassword', { oldPassword, newPassword })
+  return res.data
+}

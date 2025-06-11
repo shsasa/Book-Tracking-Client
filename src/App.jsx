@@ -11,6 +11,8 @@ import Search from './pages/Search'
 import BooksPage from './pages/BooksPage'
 import BookDetail from './pages/BookDetail'
 import { CheckSession } from './services/Auth'
+import Profile from './pages/profile'
+
 
 
 import './App.css'
@@ -21,7 +23,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 
-// import Profile from './Profile'
 import './App.css'
 
 const App = () => {
@@ -69,6 +70,8 @@ const App = () => {
           <Route path="/book/:id" element={<BookDetail />} />
           <Route path="/search/:search" element={<Search />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/profile" element={<Profile />} />
+
           {/* <Route path="/profile" element={<Profile />} /> */}
         </Routes>
       </main>
