@@ -17,8 +17,8 @@ const Nav = () => {
       }
     };
 
-    document.addEventListener("click", handleClickOutside);
-    return () => document.removeEventListener("click", handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isOpen]);
 
   return (
@@ -29,7 +29,13 @@ const Nav = () => {
           <FaHome />
         </Link>
         <Link className="logo" to="/">BookWorm</Link>
-        <button className="menu-toggle" onClick={() => setIsOpen(!isOpen)}>
+        <button
+          className="menu-toggle"
+          onClick={e => {
+            e.stopPropagation();
+            setIsOpen(!isOpen);
+          }}
+        >
           {isOpen ? <FaTimes /> : <FaBars />}
         </button>
       </header>
