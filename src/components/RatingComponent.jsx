@@ -1,22 +1,26 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 
-const RatingComponent = () => {
+const RatingComponent = ({ onChaneHandel, userRating, }) => {
   const [rating, setRating] = useState(0);
-  const [submitted, setSubmitted] = useState(false);
 
-  const handleClick = (value) => {
+
+  const handleRatingChange = (value) => {
     setRating(value);
-  };
+    onChaneHandel(value);
+    toast.success(`You rated this book ${value} stars!`);
+  }
 
-  const handleSubmit = () => {
-    if (rating > 0) {
-      toast.success(`You rated this book ${rating} stars! ⭐`);
-      setSubmitted(true);
-    } else {
-      toast.error('Please select a rating before submitting.');
+  useEffect(() => {
+    if (userRating) {
+      setRating(userRating);
     }
-  };
+  }
+    ,);
+
+
+
+
 
   return (
     <div style={{ textAlign: 'center' }}>
@@ -25,7 +29,7 @@ const RatingComponent = () => {
         {[1, 2, 3, 4, 5].map((value) => (
           <span
             key={value}
-            onClick={() => handleClick(value)}
+            onClick={() => handleRatingChange(value)}
             style={{
               cursor: 'pointer',
               fontSize: '2rem',
@@ -36,10 +40,7 @@ const RatingComponent = () => {
           </span>
         ))}
       </div>
-      <button onClick={handleSubmit} style={{ marginTop: '10px' }}>
-        Submit Rating
-      </button>
-      {submitted && <p>Thank you for rating: {rating} stars!</p>}
+
     </div>
   );
 };

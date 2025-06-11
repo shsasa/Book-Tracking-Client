@@ -18,9 +18,14 @@ export const searchBooks = async (query) => {
 };
 
 export const updateRating = async (bookId, ratingData) => {
-  const res = await Client.put(`/book/${bookId}/rating`, ratingData);
+  const res = await Client.put(`/book/${bookId}/rating/${ratingData}`);
   return res.data;
 };
+export const getBookRating = async (bookId) => {
+  const res = await Client.get(`/book/${bookId}/rating`);
+  console.log(res.data);
+  return res.data;
+}
 
 export const getBookUrl = async (epubLink) => {
   const res = await fetch(`http://localhost:3000/book/url?url=${encodeURIComponent(epubLink)}`);
@@ -29,4 +34,14 @@ export const getBookUrl = async (epubLink) => {
   if (!data.url) throw new Error('No EPUB URL returned');
 
   return `http://localhost:3000${data.url}`;
+}
+
+export const addOrRemoveBookFromFavorite = async (bookId) => {
+  const res = await Client.post(`/book/${bookId}/favorite`);
+  return res.data;
+}
+
+export const getFavoriteBooks = async () => {
+  const res = await Client.get('/book/favorites/');
+  return res.data;
 };

@@ -1,75 +1,63 @@
 import { useParams } from 'react-router-dom'
 import { useEffect, useState, useContext } from 'react'
-import { getBookById, getBookUrl } from '../services/Book'
+import { getBookById, updateRating, getBookRating, addOrRemoveBookFromFavorite } from '../services/book'
 import '../styles/BookDetail.css'
 import RatingComponent from '../components/RatingComponent'
 import { AuthContext } from '../context/AuthContext'
-import { ReactReader } from 'react-reader'
+import FavoriteButton from '../components/FavoriteButton'
 
 const BookDetail = () => {
   const { id } = useParams()
   const [book, setBook] = useState(null)
   const { user } = useContext(AuthContext)
+  const [bookRating, setBookRating] = useState(null)
+  const [isFavorited, setIsFavorited] = useState(false)
 
-  const [showReader, setShowReader] = useState(false)
-  const [location, setLocation] = useState(null)
-  const [epubUrl, setEpubUrl] = useState(null)
-  const [bookAvailable, setBookAvailable] = useState(false)
-
-
-  const getBooksUrl = async (url) => {
+  const updateRatingHandel = async (rating) => {
+    if (!book) return;
     try {
-      setBookAvailable(false);
-      const res = await getBookUrl(url);
-      setEpubUrl(res);
-      setBookAvailable(true);
+      await updateRating(book.id, rating);
+      const bookRating = await getBookRating(book.id);
+      setBookRating(bookRating.rating.rating);
+      console.log('Rating updated successfully:', bookRating);
     } catch (err) {
-      console.error('Error fetching book URL:', err);
-      setBookAvailable(false);
+      console.error('Error updating rating:', err);
+    }
+  }
+
+  const handleToggleFavorite = async (newState) => {
+    if (!user) {
+      alert('You must be logged in to favorite books.');
+      return;
+    }
+    try {
+      await addOrRemoveBookFromFavorite(book.id);
+      setIsFavorited(newState);
+    } catch (err) {
+      alert('Error updating favorite status.');
     }
   };
-
-  const extractEpubUrl = (formats) => {
-    if (!formats) return null;
-
-    const preferredKeys = [
-      'application/epub+zip',
-      'application/x-mobipocket-ebook',
-      'application/octet-stream'
-    ];
-
-    for (let key of preferredKeys) {
-      if (formats[key]) return formats[key];
-    }
-
-    return null;
-  };
-
-
 
   useEffect(() => {
     const fetchBook = async () => {
       try {
-        const res = await getBookById(id)
-        setBook(res)
-      } catch (err) {
-        console.error('Error loading book:', err)
-      }
-    }
-    fetchBook()
-  }, [id])
+        const res = await getBookById(id);
+        setBook(res);
+        setIsFavorited(res.isFavorite || false);
 
-  useEffect(() => {
-    if (book?.formats) {
-      const epubLink = extractEpubUrl(book.formats);
-      if (epubLink) {
-        getBooksUrl(epubLink);
-      } else {
-        setBookAvailable(false);
-        setEpubUrl(null);
+        if (user) {
+          const bookRating = await getBookRating(id);
+          setBookRating(bookRating.rating.rating);
+        } else {
+          setBookRating(null);
+        }
+        // setIsFavorited( ... );
+      } catch (err) {
+        console.error('Error loading book:', err);
       }
-    }
-  }, [book])
+    };
+    fetchBook();
+  }, [id, user]);
 
   if (!book) return <p>Loading...</p>
 
@@ -110,50 +98,24 @@ const BookDetail = () => {
         {user ? (
           <>
             <div className="book-detail-links">
-              {book.formats['text/html'] && (
-                <a href={book.formats['text/html']} target="_blank" rel="noreferrer">
-                  📖 Read Online
-                </a>
-              )}
               {book.formats['audio/mpeg'] && (
                 <a href={book.formats['audio/mpeg']} target="_blank" rel="noreferrer">
                   🎧 Listen (MP3)
                 </a>
               )}
-              {bookAvailable && epubUrl && (
-                <button
-                  className="epub-reader-btn"
-                  onClick={() => setShowReader(!showReader)}
-                  style={{ marginLeft: 10 }}
-                >
-                  📚 Read EPUB
-                </button>
-              )}
             </div>
-            <RatingComponent bookId={book._id} />
+            <FavoriteButton
+              bookId={book.id}
+              user={user}
+              isInitiallyFavorited={isFavorited}
+              onToggle={handleToggleFavorite}
+            />
+            <RatingComponent onChaneHandel={updateRatingHandel} userRating={bookRating || 0} />
           </>
         ) : (
           <p style={{ marginTop: '1rem', fontStyle: 'italic', color: 'gray' }}>
-            Please log in to read or listen to this book.
+            Please log in to listen to this book.
           </p>
-        )}
-
-        {showReader && bookAvailable && epubUrl && (
-          <div style={{ height: '70vh', marginTop: 24 }}>
-            <ReactReader
-              url={epubUrl}
-              location={location}
-              locationChanged={setLocation}
-              showToc
-            />
-            <button
-              className="epub-reader-btn"
-              style={{ marginTop: 10 }}
-              onClick={() => setShowReader(false)}
-            >
-              Close Reader
-            </button>
-          </div>
         )}
       </div>
     </div>
