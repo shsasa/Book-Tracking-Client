@@ -198,3 +198,7 @@ h2 {
   text-align: center; /* Centered */
   margin-bottom: 40px;
 }
+/* Removed Genre Filter */
+.genre-filter {
+  display: none;
+}
